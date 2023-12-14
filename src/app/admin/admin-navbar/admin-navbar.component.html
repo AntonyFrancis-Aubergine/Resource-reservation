@@ -1,0 +1,51 @@
+
+<div class="page-container">
+    <mat-sidenav-container class="sidenav-wrapper">
+      <mat-sidenav class="sidenav" #sidenav [mode]="'over'" autoFocus="false">
+        <div class="inside">
+        </div>
+        <div class="navbar-components">
+          <mat-nav-list >
+            <button mat-icon-button id = "menu" (click)="sidenav.toggle()" onclick="this.blur()"><mat-icon>menu</mat-icon></button>
+            
+            <div class="logodiv">
+              
+            <img class="logo" src="assets/aub.jpeg" />
+          </div>
+          <mat-divider></mat-divider>
+          <div class="contents">
+          <a class="text" mat-list-item routerLink="add" routerLinkActive="active-list-item" (click)="sidenav.toggle()">
+          <div class="home"><mat-icon>add</mat-icon>Add </div> </a>
+          <a class="text" mat-list-item routerLink="block" routerLinkActive="active-list-item" (click)="sidenav.toggle()"> 
+            <div class="aubies"><mat-icon>block</mat-icon>Block </div></a>
+            
+            <a class="text" mat-list-item routerLink="delete" routerLinkActive="active-list-item" (click)="sidenav.toggle()">
+              <div class="visitors"><mat-icon>delete</mat-icon>Delete </div></a>
+          </div>
+          </mat-nav-list>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <mat-toolbar>
+          <mat-toolbar-row>
+            <button mat-icon-button id = "menu" (click)="sidenav.toggle()" onclick="this.blur()">
+              <mat-icon>menu</mat-icon>
+            </button>
+      
+            <button id="logout" class="logout-button" mat-icon-button (click)="logout()">
+              <mat-icon>logout</mat-icon>
+            </button>
+           
+        </mat-toolbar-row>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+     
+    </mat-sidenav-container>
+  
+   
+  </div>
+  
+  
+  
+  

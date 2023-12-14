@@ -1,0 +1,89 @@
+.logout-button {
+    position: relative;
+    margin-left: 80%;
+  }
+  .sidenav-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: auto;
+    left: 0;
+    right: 0;
+    background: #851818;
+  }
+  
+  .topbar {
+    width: 100%;
+  }
+  .inside {
+    position: relative;
+    display: flex;
+    margin: 0%;
+    align-items: center;
+    justify-content: center;
+  }
+  .sidenav {
+    position: fixed;
+    width: 15%;
+    padding: 0%;
+    background-color: rgb(247, 247, 247);
+  }
+  .logo {
+    margin: 5%;
+    margin-right: 3%;
+    position: relative;
+  }
+  .logodiv {
+    text-align: center;
+    position: relative;
+  }
+  .home,.aubies,.visitors{
+    display: flex;
+    justify-content: center;
+  }
+  .navbar-components {
+    position: relative;
+    margin-top: 20%;
+    padding: 10%;
+  }
+  .contents {
+    padding-top: 10%;
+  }
+  .mat-divider {
+    margin: 10%;
+  }
+  .text {
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 3%;
+    border-radius: 30px;
+    text-align: center;
+  }
+  
+  .right-buttons {
+    margin-left: 70%;
+  }
+  
+  .logout-button {
+    margin-left: 85%;
+  }
+  
+  .mat-sidenav-content {
+    width: 100%;
+  }
+  
+  .mat-drawer-content {
+    position: fixed;
+  }
+  
+  .heading {
+    margin-top: 1%;
+  }
+  .active-list-item {
+    color: #000000 !important;
+    background-color: rgb(
+      223,
+      223,
+      223
+    );
+  }
+  

@@ -1,0 +1,93 @@
+<div class="main-content">
+  <mat-divider></mat-divider>
+  
+  <div class="header">
+    <h1>Reserve a Resource</h1>
+  </div>
+  <div class="image-container">
+    <img class="image"  src="assets/office.jpg" />
+  </div>
+  <div class="selector-form">
+    <mat-card class="card">
+    <form class="selection">
+        <div class="select-dropdown">
+            <mat-form-field class="dropdown" style="margin-right: 20px;">
+              <label>Select the resource</label>
+              <select matNativeControl required></select>
+            </mat-form-field>
+        <mat-form-field class="dropdown">
+          <label>Select Id of the resource</label>
+          <select matNativeControl required></select>
+        </mat-form-field>
+      </div>
+      <div class="date-selector">
+        <table class="form-table">
+          <div class="calender-from">
+            <tr class="row">
+
+                <td class="cell">
+                    <mat-form-field >
+                        <mat-label>Select from date</mat-label>
+                        <input matInput [matDatepicker]="pickerfromdate" />
+                        <mat-datepicker-toggle
+                        matIconSuffix
+                        [for]="pickerfromdate"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker
+                        #pickerfromdate
+                        startView="month"
+                        ></mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td class="cell">
+              <mat-form-field style="width: 250px;">
+                <mat-label>Select from time</mat-label>
+                
+                <input matInput [ngxTimepicker]="pickertimefrom" />
+                <ngx-material-timepicker
+                #pickertimefrom
+                ></ngx-material-timepicker>
+            </mat-form-field>
+        </td>
+    </tr>
+          </div>
+          <div class="calender-to">
+            <tr class="row">
+
+                <td class="cell">
+                    <mat-form-field >
+                <mat-label>Select to date</mat-label>
+                
+                <input matInput [matDatepicker]="pickertodate" />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="pickertodate"
+                ></mat-datepicker-toggle>
+                <mat-datepicker
+                #pickertodate
+                startView="month"
+                ></mat-datepicker>
+              </mat-form-field>
+            </td>
+            <td class="cell">
+              <mat-form-field style="width: 250px;">
+                  <mat-label>Select to time</mat-label>
+                  
+                  <input matInput [ngxTimepicker]="pickertimeto" />
+                  <ngx-material-timepicker
+                  #pickertimeto
+                  ></ngx-material-timepicker>
+              </mat-form-field>
+            </td>
+        </tr>
+          </div>
+        </table>
+        <div class="submit">
+
+            <button mat-raised-button color="primary">Submit</button>
+        </div>
+        </div>
+    </form>
+  </mat-card>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+.image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.selection{
+width: 100%;
+
+}
+.selector-form{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10%;
+
+}
+.calender-from{
+    display: flex;
+    justify-content: space-around;
+}
+.calender-to{
+    display: flex;
+    justify-content: space-around;
+}
+.select-dropdown{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.card{
+    padding: 50px;
+}
+.row{
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+}
+.submit{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10%;
+
+}
+.dropdown{
+    width: 250px;
+    height: 90px;
+
+}
+.header{
+    display: flex;
+    margin-top: 5%;
+    justify-content: center;
+}
+.image{
+    width: 80%;
+}
+.date-selector{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.calender-from{
+    display: flex;
+    justify-content: space-between;
+}
+.form-table{
+    width: 100%;
+}
+/* .cell{
+    margin-right: 5% !important;
+} */

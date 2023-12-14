@@ -1,0 +1,62 @@
+ <div class="main" fxLayout="column" fxLayoutAlign="center center" fxFlexFill> 
+  <div class="center-container">
+   
+  <mat-card class="login-card">
+    <mat-card-header class="header">
+      <h1 class="heading">Login</h1>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="login-form">
+        <form class="login">
+          <div class="emailId">
+            <mat-form-field class="email">
+              <mat-label>Email</mat-label>
+              <input matInput class="email"  type="email"/>
+            </mat-form-field>
+          </div>
+          <div class="password">
+            <mat-form-field class="password">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" class="password"/>
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+      <div class="googleSignin">
+
+        <div 
+        id="g_id_onload"
+        data-client_id="157645232914-rfjugqpitk0caia0i3sl2096uor3mi56.apps.googleusercontent.com"
+        data-context="signup"
+        data-ux_mode="popup"
+        data-login_uri="https://localhost:4200"
+        data-auto_prompt="false">
+      </div>
+      
+      <div class="g_id_signin"
+      data-type="standard"
+      data-shape="rectangular"
+      data-theme="filled_black"
+      data-text="signin_with"
+      data-size="large"
+      data-logo_alignment="left"
+      data-width="400px">
+    </div>
+  </div>
+  <div *ngIf="user">
+    <img src="{{ user.photoUrl }}" />
+    <div>
+      <h4>{{ user.name }}</h4>
+      <p>{{ user.email }}</p>
+    </div>
+  </div>
+    </mat-card-content>
+  </mat-card>
+  
+  
+  
+  
+</div>
+</div>
+

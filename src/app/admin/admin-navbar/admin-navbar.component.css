@@ -43,8 +43,9 @@
   }
   .navbar-components {
     position: relative;
-    margin-top: 20%;
+    /* margin-top: 20%; */
     padding: 10%;
+    padding-top: 0% !important;
   }
   .contents {
     padding-top: 10%;
@@ -86,4 +87,10 @@
       223
     ); /* Note: You could also use a custom theme */
   }
+
+  .image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   

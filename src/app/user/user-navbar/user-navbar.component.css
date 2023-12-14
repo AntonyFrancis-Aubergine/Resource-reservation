@@ -43,11 +43,15 @@
   }
   .navbar-components {
     position: relative;
-    margin-top: 20%;
+    /* margin-top: 20%; */
     padding: 10%;
+    padding-top: 0% !important;
   }
   .contents {
     padding-top: 10%;
+  }
+  mat-toolbar{
+    position: fixed;
   }
   .mat-divider {
     margin: 10%;

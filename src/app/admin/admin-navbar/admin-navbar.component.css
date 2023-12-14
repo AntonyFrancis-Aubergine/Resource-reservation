@@ -47,6 +47,9 @@
     padding: 10%;
     padding-top: 0% !important;
   }
+  mat-toolbar{
+    position: fixed;
+  }
   .contents {
     padding-top: 10%;
   }

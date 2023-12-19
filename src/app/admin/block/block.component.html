@@ -2,21 +2,37 @@
     <div class="header">
         <h1>Block Resource</h1>
     </div>
-        <form class="add-form">
+        <form class="block-form" #blockForm="ngForm" (ngSubmit)="blockResourceUser(blockForm.value)">
             <div class="add-form-div">
             <mat-card class="card">
                 <div class="input-element">
 
                     <mat-form-field class="input">
-                        <mat-label>Resource Id</mat-label>
-                        <select matNativeControl required></select>
+                        <mat-label>Select the resource to be blocked</mat-label>
+
+                        <mat-select matNativeControl required [(ngModel)]="block.resourceId" name="resourceId" >
+                            <mat-option>--Select</mat-option>
+                            <mat-option *ngFor="let option of registeredResources" [value]="option.resourceId">
+                                {{ option.resourceId}}
+                            </mat-option>
+
+
+                        </mat-select>
                     </mat-form-field>
                 </div>
                 <div class="input-element">
 
                     <mat-form-field class="input">
-                        <mat-label>Resource Type</mat-label>
-                        <select matNativeControl required></select>
+                        <mat-label>Select the ID of the employee</mat-label>
+
+                        <mat-select matNativeControl required [(ngModel)]="block.employeeId" name="employeeId" >
+                            <mat-option>--Select</mat-option>
+                            <mat-option *ngFor="let option of registeredUsers" [value]="option.employeeId">
+                                {{ option.employeeId }}
+                            </mat-option>
+
+
+                        </mat-select>
                     </mat-form-field>
                 </div>
                 <div class="input-element">

@@ -2,23 +2,37 @@
     <div class="header">
         <h1>Delete Resource</h1>
     </div>
-        <form class="add-form">
+        <form class="delete-form" #delForm = ngForm name="deleteForm" (ngSubmit)="delete(delForm.value)">
             <div class="add-form-div">
             <mat-card class="card">
                 <div class="input-element">
 
                     <mat-form-field class="input">
-                        <mat-label>Resource ID</mat-label>
-                        <select matNativeControl required></select>
+                        <mat-label>Select the resource to delete</mat-label>
+                        <mat-select matNativeControl required [(ngModel)]="resource.resourceId" name="resourceId">
+                            <mat-option>--Select</mat-option>
+                            <mat-option *ngFor="let option of registeredResources" [value]="option.resourceId">
+                                {{ option.resourceId }}
+                            </mat-option>
+
+
+                        </mat-select>
                     </mat-form-field>
                 </div>
-                <div class="input-element">
+                <!-- <div class="input-element">
 
                     <mat-form-field class="input">
-                        <mat-label>Resource Type</mat-label>
-                        <select matNativeControl required></select>
+                        <mat-label>Select the ID of the employee</mat-label>
+                        <mat-select matNativeControl required [(ngModel)]="resource.resourceTypeId" name="resourceTypeId">
+                            <mat-option>--Select</mat-option>
+                            <mat-option *ngFor="let option of registeredResources" [value]="option.resourceTypeId">
+                                {{ option.resourceId}}
+                            </mat-option>
+
+
+                        </mat-select>
                     </mat-form-field>
-                </div>
+                </div> -->
                 <div class="input-element">
 
                     <button mat-raised-button color="primary">Submit</button>

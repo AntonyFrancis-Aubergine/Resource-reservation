@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker'; 
+import { NgxMaterialTimepickerModule, TimepickerDirective } from 'ngx-material-timepicker'; 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { UserNavbarComponent } from './user-navbar/user-navbar.component';
@@ -15,6 +15,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,12 +31,16 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatNativeDateModule,
     MatButtonModule,
+    NgxMaterialTimepickerModule,
     MatDividerModule,
     NgxMaterialTimepickerModule,
     MatIconModule,
+    MatFormFieldModule,
+  FormsModule,
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
+    MatSelectModule,
     MatCardModule
 
 

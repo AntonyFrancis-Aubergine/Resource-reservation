@@ -2,31 +2,39 @@
     <div class="header">
         <h1>Add Resource</h1>
     </div>
-        <form class="add-form">
+    <form #resForm="ngForm" (ngSubmit)="addResource(resForm.value)">
             <div class="add-form-div">
             <mat-card class="card">
                 <div class="input-element">
 
                     <mat-form-field class="input">
                         <mat-label>Resource Id</mat-label>
-                        <input matInput type="text" required>
+                        <input ngModel matInput name="resourceId" type="text" required #resourceId>
                     </mat-form-field>
                 </div>
                 <div class="input-element">
 
                     <mat-form-field class="input">
                         <mat-label>Resource Type</mat-label>
-                        <select matNativeControl required></select>
+                        <mat-select matNativeControl required [(ngModel)]="resource.resourceTypeId" name="resourceTypeId">
+                            <mat-option>--Select</mat-option>
+                            <mat-option *ngFor="let option of resourceOptions" [value]="option.resourceTypeId">
+                                {{ option.name}}
+                            </mat-option>
+
+
+                        </mat-select>
+                        
+
                     </mat-form-field>
                 </div>
                 <div class="input-element">
 
-                    <button mat-raised-button color="primary">Submit</button>
+                    <button mat-raised-button color="primary" >Submit</button>
                 </div>
-                    
             </mat-card>
         </div>
-        </form>
+    </form>              
 
 
     

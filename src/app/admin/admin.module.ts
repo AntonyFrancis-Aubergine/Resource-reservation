@@ -20,6 +20,8 @@ import { DeleteComponent } from './delete/delete.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -44,6 +46,7 @@ MatIconModule,
 MatTableModule ,
 MatToolbarModule,
 MatCardModule,
-MatFormFieldModule ]
+MatFormFieldModule,
+FormsModule ]
 })
 export class AdminModule { }

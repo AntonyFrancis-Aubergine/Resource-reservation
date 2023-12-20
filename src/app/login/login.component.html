@@ -8,19 +8,23 @@
     <mat-card-content>
 
       <div class="login-form">
-        <form class="login">
+        <form class="login" #loginForm = "ngForm" (ngSubmit)="login(loginForm.value)">
           <div class="emailId">
             <mat-form-field class="email">
               <mat-label>Email</mat-label>
-              <input matInput class="email"  type="email"/>
+              <input matInput class="email" name="email" ngModel #email type="email"/>
             </mat-form-field>
           </div>
           <div class="password">
             <mat-form-field class="password">
               <mat-label>Password</mat-label>
-              <input matInput type="password" class="password"/>
+              <input matInput type="password" ngModel name="password" #password/>
             </mat-form-field>
           </div>
+          <div class="input-element">
+
+            <button mat-raised-button color="primary" >Submit</button>
+        </div>
         </form>
       </div>
       <div class="googleSignin">

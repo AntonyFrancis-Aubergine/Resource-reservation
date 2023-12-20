@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { SharedService } from '../shared.service';
+import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +13,7 @@ export class LoginComponent {
   loggedIn: any;
 
 
-  constructor(private authService: SocialAuthService, private sharedService: SharedService) { }
+  constructor(private api: ApiService,private authService: SocialAuthService, private sharedService: SharedService , private router:Router) { }
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
@@ -26,8 +28,22 @@ export class LoginComponent {
     });
 
 
+
   }
   
+
+  async login(data:any){
+    console.log(data.email , data.password)
+    this.api.signIn(data.email ).then((res)=> {
+
+      
+      this.router.navigate(['user'])
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
   
  
 

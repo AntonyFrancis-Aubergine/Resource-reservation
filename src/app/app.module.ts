@@ -22,6 +22,7 @@ import {
 } from '@abacritt/angularx-social-login';
 import {MatCardModule} from '@angular/material/card';
 import { LoginComponent } from './login/login.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 // const config = new SocialAuthServiceConfig({
 //   autoLogin: false,
@@ -50,6 +51,7 @@ import { LoginComponent } from './login/login.component';
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
+    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,

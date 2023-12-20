@@ -20,6 +20,7 @@ export interface RegisteredUsers {
 export interface Reserve{
     reservationId:string;
     employeeId:string;
+    resourceTypeId:string;
     resourceId:string;
     dateFrom:string;
     dateTo:string;

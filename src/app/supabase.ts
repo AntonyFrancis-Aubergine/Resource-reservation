@@ -34,17 +34,30 @@ export class Supabase{}
 
   
  
-const { data, error } = await supabase
-    .from('resource')
-    .select('resourceId')
-    .eq('resourceTypeId' , '2')
+// const { data, error } = await supabase
+    // .from('resource')
+    // .select('resourceId')
+    // .eq('resourceTypeId' , '2')
 
-    if(!error)
-    {
-      console.log(data)
-    }
-  
+    // if(!error)
+    // {
+    //   console.log(data)
+    // }
 
-  
 
- 
+
+      // const { data , error } = await supabase
+      // .from('reservation')
+      // .insert(reserve)
+      // return {data,error};
+    
+    //   const {data,error} = await supabase
+    //   .from('users')
+    //   .select('*')
+    //   .eq('email', 'antony@auberginesolutions.com')
+    //   .eq('password', 'abcd')
+    //   .eq('role' , 'admin')
+
+
+     const {data,error} = await supabase.from('auth.users').select('*')
+     console.log(data,error);

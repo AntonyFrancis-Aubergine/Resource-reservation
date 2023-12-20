@@ -9,12 +9,12 @@
   </div>
   <div class="selector-form">
     <mat-card class="card">
-    <form  #selection="ngForm" (ngSubmit)="reserveForm(selection.value)">
+    <form  #selection="ngForm" (ngSubmit)="reserveForm()">
 
         <div class="select-dropdown">
             <mat-form-field class="dropdown" style="margin-right: 20px;">
               <mat-label>Resource Type</mat-label>
-              <mat-select matNativeControl required [(ngModel)]="resource.resourceTypeId" name="resourceTypeId" (selectionChange)="onSelected()" #resourceTypeId>
+              <mat-select matNativeControl required [(ngModel)]="reserve.resourceTypeId" name="resourceTypeId" (selectionChange)="onSelected()" #resourceTypeId>
                   <mat-option>--Select--</mat-option>
                   <mat-option *ngFor="let option of resourceTypeOptions" [value]="option.resourceTypeId">
                       {{ option.name}}
@@ -27,7 +27,7 @@
         <mat-form-field class="dropdown">
           <mat-label>Select the resource to be blocked</mat-label>
 
-          <mat-select matNativeControl required [(ngModel)]="resource.resourceId" name="resourceId" (selectionChange)="onResourceSelected()">
+          <mat-select matNativeControl required [(ngModel)]="reserve.resourceId" name="resourceId" (selectionChange)="onResourceSelected()">
               <mat-option>--Select</mat-option>
               <mat-option *ngFor="let option of resourceDependentList" [value]="option.resourceId">
                   {{ option.resourceId }}
@@ -48,18 +48,12 @@
                     <mat-form-field >
                         <mat-label>Select from date</mat-label>
                         <input matInput [matDatepicker]="pickerfromdate" [(ngModel)] = "reserve.dateFrom" #pickerFromDate (dateChange)="onFromDateSelected($event)" name="pickerFromDate"/>
+                        <mat-hint>MM-DD-YYYY</mat-hint>
                         <mat-datepicker-toggle matIconSuffix [for]="pickerfromdate"  ></mat-datepicker-toggle> 
                         <mat-datepicker #pickerfromdate startView="month" ></mat-datepicker>
                     </mat-form-field>
                 </td>
-                <td class="cell">
-              <mat-form-field style="width: 250px;">
-                <mat-label>Select from time</mat-label>
                 
-                <input matInput [ngxTimepicker]="pickertimefrom" name="pickerFromTime"#pickerFromTime [(ngModel)] = "reserve.timeFrom" (timeSet)="onFromTimeSelected($event)"/>
-                <ngx-material-timepicker #pickertimefrom></ngx-material-timepicker>
-            </mat-form-field>
-        </td>
     </tr>
           </div>
           <div class="calender-to">
@@ -70,19 +64,12 @@
                 <mat-label>Select to date</mat-label>
                 
                 <input matInput [matDatepicker]="pickertodate" #pickerToDate name="pickerToDate" [(ngModel)] = "reserve.dateTo" (dateChange)="onToDateSelected($event)"/>
+                <mat-hint>MM-DD-YYYY</mat-hint>
+
                 <mat-datepicker-toggle matIconSuffix [for]="pickertodate" ></mat-datepicker-toggle>
                 <mat-datepicker #pickertodate startView="month">
                 
               </mat-datepicker>
-              </mat-form-field>
-            </td>
-            <td class="cell">
-              <mat-form-field style="width: 250px;">
-                  <mat-label>Select to time</mat-label>
-                  
-                  <input matInput [ngxTimepicker]="pickertimeto" [(ngModel)] = "reserve.timeTo" #pickerToTime name="pickerToTime"(timeupdate)="onToTimeSelected($event)"/>
-                  
-                  <ngx-material-timepicker #pickertimeto></ngx-material-timepicker>
               </mat-form-field>
             </td>
         </tr>

@@ -33,7 +33,7 @@ width: 100%;
 }
 .row{
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     display: flex;
 }
 .submit{

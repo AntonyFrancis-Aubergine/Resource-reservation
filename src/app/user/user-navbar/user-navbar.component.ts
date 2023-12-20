@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-navbar',
@@ -6,8 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './user-navbar.component.css'
 })
 export class UserNavbarComponent {
-logout() {
-throw new Error('Method not implemented.');
-}
+
+  constructor(private router:Router){}
+  logout() {
+
+    if(confirm("do you want to logout?") == true){
+    this.router.navigate(['/'])}
+    }
 
 }

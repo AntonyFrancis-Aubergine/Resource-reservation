@@ -8,7 +8,7 @@
     <mat-card-content>
 
       <div class="login-form">
-        <form class="login" #loginForm = "ngForm" (ngSubmit)="login(loginForm.value)">
+        <form class="login" #loginForm = "ngForm" >
           <div class="emailId">
             <mat-form-field class="email">
               <mat-label>Email</mat-label>
@@ -28,17 +28,49 @@
         </form>
       </div>
       <div class="googleSignin">
+        <div
+  id="g_id_onload"
+  data-client_id="157645232914-rfjugqpitk0caia0i3sl2096uor3mi56.apps.googleusercontent.com"
+  data-context="signin"
+  data-ux_mode="popup"
+  data-callback="login"
+  data-nonce=""
+  data-auto_select="true"
+  data-itp_support="true"
+></div>
 
+<div
+  class="g_id_signin"
+  data-type="standard"
+  data-shape="pill"
+  data-theme="outline"
+  data-text="signin_with"
+  data-size="large"
+  data-logo_alignment="left"
+></div>
+
+<!-- 
         <div 
         id="g_id_onload"
         data-client_id="157645232914-rfjugqpitk0caia0i3sl2096uor3mi56.apps.googleusercontent.com"
-        data-context="signup"
+        data-context="signin"
         data-ux_mode="popup"
         data-login_uri="https://localhost:4200"
         data-auto_prompt="false">
-      </div>
+      </div> -->
+
+      <!-- <div
+  id="g_id_onload"
+  data-client_id="157645232914-rfjugqpitk0caia0i3sl2096uor3mi56.apps.googleusercontent.com"
+  data-context="signin"
+  data-ux_mode="popup"
+  data-callback="this.api.handleSignInWithGoogle"
+  data-nonce=""
+  data-auto_select="true"
+  data-itp_support="true"
+></div> -->
       
-      <div class="g_id_signin"
+      <!-- <div class="g_id_signin"
       data-type="standard"
       data-shape="rectangular"
       data-theme="filled_black"
@@ -46,19 +78,24 @@
       data-size="large"
       data-logo_alignment="left"
       data-width="400px">
-    </div>
+    </div> -->
   </div>
-  <div *ngIf="user">
+
+
+  <!-- <div *ngIf="user">
     <img src="{{ user.photoUrl }}" />
     <div>
       <h4>{{ user.name }}</h4>
       <p>{{ user.email }}</p>
     </div>
-  </div>
+  </div> -->
     </mat-card-content>
   </mat-card>
   
-  
+  <div class="input-element">
+
+    <button mat-raised-button color="primary" (click)="login()">Test</button>
+</div>
   
   
 </div>

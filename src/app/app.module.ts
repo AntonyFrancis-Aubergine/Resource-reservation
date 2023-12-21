@@ -24,15 +24,7 @@ import {MatCardModule} from '@angular/material/card';
 import { LoginComponent } from './login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-// const config = new SocialAuthServiceConfig({
-//   autoLogin: false,
-//   providers: [
-//     {
-//       id: GoogleLoginProvider.PROVIDER_ID,
-//       provider: new GoogleLoginProvider('YOUR-GOOGLE-CLIENT-ID') // Replace 'YOUR-GOOGLE-CLIENT-ID' with your actual Client ID
-//     }
-//   ]
-// });
+
 
 @NgModule({
   declarations: [

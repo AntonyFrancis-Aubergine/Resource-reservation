@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
 
 timepicker: any;
-typeId:any;
+typeId:any= '2'
 fromTime:any
 reserve:Reserve = {
   reservationId:'',
@@ -29,8 +29,8 @@ submitResource:any = {
 
 };
 
-fromDate:any;
-toDate:any;
+fromDate:any='2023-12-01'
+toDate:any='2023-12-30'
 toTime:any;
 fromProper: any;
 toProper: any;
@@ -42,6 +42,7 @@ resource:Resource ={
   resourceId: '',
   resourceTypeId: '',
 };
+  emailOfUser: string | undefined;
 constructor(private api:ApiService , private router:Router){}
 
 onToTimeSelected(timeObject:any) {
@@ -84,9 +85,17 @@ ngOnInit(){
    console.log(this.resourceTypeOptions);
   })
 
+  this.api.authChanges((_, session) =>{
+
+    this.emailOfUser = (session?.user.email);
+    console.log(this.emailOfUser)
+})
+
+this.getreserver();
+}
   
  
-}
+
 
 populateSecondDropdown(){
   this.api.getResourcesDependent(this.typeId).then((response:any)=>
@@ -97,11 +106,11 @@ populateSecondDropdown(){
 }
 
 async reserveForm(){
-this.fromProper = this.fromDate +' ' + this.fromTime;
-this.toProper = this.toDate +' ' + this.toTime;
+
 this.submitResource.dateFrom = this.fromDate;
 this.submitResource.dateTo = this.toDate;
 this.submitResource.resourceId = this.selectedResourceId;
+this.submitResource.email = this.emailOfUser;
 console.log(this.submitResource)
 try {
   const result = await this.api.addReservation(this.submitResource);
@@ -118,6 +127,11 @@ try {
 
 
   
+}
+
+async getreserver(){
+  this.api.getResourcesAvailable(this.typeId,this.fromDate,this.toDate)
+
 }
 
 

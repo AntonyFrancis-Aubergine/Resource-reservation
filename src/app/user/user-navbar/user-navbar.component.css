@@ -1,6 +1,5 @@
 .logout-button {
     position: relative;
-    margin-left: 80%;
   }
   .sidenav-wrapper {
     position: fixed;
@@ -64,11 +63,13 @@
   }
   
   .right-buttons {
-    margin-left: 70%;
   }
   
-  .logout-button {
-    margin-left: 85%;
+  .logoutdiv{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+
   }
   
   .mat-sidenav-content {
@@ -89,5 +90,11 @@
       223,
       223
     );
+  }
+  .right{
+    display: flex;
+
+    margin-left: 1000px;
+
   }
   

@@ -3,7 +3,8 @@ import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { SharedService } from '../shared.service';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
-import  supabase  from '../supabase';
+import supabase from '../supabase';
+import { AuthSession } from '@supabase/supabase-js';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,15 +12,18 @@ import  supabase  from '../supabase';
 })
 export class LoginComponent {
   user: any = {
-email:'',
-googleUserId:''
+    email: '',
+    googleUserId: '',
+    name: ''
   };
   loggedIn: any;
   email: string | undefined;
+  status:any;
 
+  session = this.api.session;
+  Gid: any;
 
-
-  constructor(private api: ApiService,private authService: SocialAuthService, private sharedService: SharedService , private router:Router ) { }
+  constructor(private api: ApiService, private authService: SocialAuthService, private sharedService: SharedService, private router: Router) { }
 
   ngOnInit() {
     // this.authService.authState.subscribe((user) => {
@@ -33,28 +37,53 @@ googleUserId:''
 
 
     // });
+    this.api.authChanges((_, session) => {
+      this.session = session;
+      // console.log(session?.user);
+      // console.log(session?.user?.user_metadata?.['full_name']);
 
-    this.api.getSession().then((res) =>
-    {
-      this.user.email= res.data.session?.user.email;
-      this.user.googleUserId = res.data.session?.user.id;
-      console.log(res.data.session?.user.email);
-      console.log(this.user.googleUserId)
-      debugger;
-      if(this.user.email)
-      {
+      this.user.email = session?.user.email;
+      this.user.googleUserId = session?.user.id;
+     this.user.name= session?.user?.user_metadata?.['full_name']
+
+       this.Gid =   this.api.getEmail(this.user.email)
+      if(this.Gid = this.user.googleUserId){
+        this.status = '1'
+
+      }
+      else{
+        this.status = '0'
+      }
+     
+
+
+
+      if (this.session?.user.email === 'antony@auberginesolutions.com') {
+        console.log(this.session);
+        this.router.navigate(['admin'])
+      }
+      else if(this.session?.user.email != null && this.Gid === this.user.googleUserId){
+        this.addUser(this.user);
         this.router.navigate(['user'])
       }
-      else
-      {
-        alert("invalid credentials")
-      }
-    })
+    });
+    // this.api.getSession().then((res) =>
+    // {
+    //   this.user.email= res.data.session?.user.email;
+    //   this.user.googleUserId = res.data.session?.user.id;
+    //   console.log(res.data.session?.user.email);
+    //   console.log(this.user.googleUserId)
+
+    //   else
+    //   {
+    //     alert("invalid credentials")
+    //   }
+    // })
 
   }
-  
 
-  login(data?:any){
+
+  login(data?: any) {
     // console.log(data.email , data.password)
     this.api.signinGoogle()
     // .then((res)=> {
@@ -67,17 +96,17 @@ googleUserId:''
     //     // this.router.navigate(['user'])
     //   }
     // })
-  //   this.api.getSession().then((res) =>
-  //   {
-  //     this.user.email= res.data.session?.user.email;
-  //     this.user.googleUserId = res.data.session?.user.id;
-  //     console.log(res.data.session?.user.email);
-    
-  // })
-  
+    //   this.api.getSession().then((res) =>
+    //   {
+    //     this.user.email= res.data.session?.user.email;
+    //     this.user.googleUserId = res.data.session?.user.id;
+    //     console.log(res.data.session?.user.email);
+
+    // })
+
   }
 
-async addUser(user: any) {
+  async addUser(user: any) {
 
     console.log(user)
 
@@ -93,8 +122,8 @@ async addUser(user: any) {
       alert("An error occurred while adding the resource");
     }
   }
- 
-  
- 
+
+
+
 
 }

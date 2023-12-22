@@ -60,6 +60,16 @@ export class Supabase{
     //   .eq('password', 'abcd')
     //   .eq('role' , 'admin')
 
-
+const email = 'antony@auberginesolutions.com'
     //  const {data,error} = await supabase.from('auth.users').select('*')
     //  console.log(data,error);
+
+    const { data,error} = await supabase
+    .from('users')
+    .select('googleUserId')
+    .eq('email' , email)
+    console.log(data)
+
+
+
+    

@@ -12,6 +12,7 @@ export class ApiService {
   _session: AuthSession | null;
   constructor() { }
   _session: AuthSession | null;
+  _session: AuthSession | null;
 
   supabase: SupabaseClient = createClient(initSupabase.supabaseUrl, initSupabase.supabaseKey);
 
@@ -84,6 +85,13 @@ export class ApiService {
     return await this.supabase
       .from('users')
       .select('*')
+  }
+
+  async getEmail(email:string){
+    return await this.supabase
+    .from('users')
+    .select('googleUserId')
+    .eq('email' , email)
   }
 
  

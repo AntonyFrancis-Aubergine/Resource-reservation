@@ -20,9 +20,11 @@ export class LoginComponent {
   loggedIn: any;
   email: string | undefined;
   status:any;
+  status:any;
 
   session = this.api.session;
 
+  constructor(private api: ApiService, private authService: SocialAuthService, private sharedService: SharedService, private router: Router) { }
   constructor(private api: ApiService, private authService: SocialAuthService, private sharedService: SharedService, private router: Router) { }
 
   ngOnInit() {
@@ -106,8 +108,7 @@ export class LoginComponent {
 
   }
 
-  async addUser(user: any) {
-  async addUser(user: any) {
+async addUser(user: any) {
 
     console.log(user)
 
@@ -123,6 +124,9 @@ export class LoginComponent {
       alert("An error occurred while adding the resource");
     }
   }
+
+
+
 
 
 

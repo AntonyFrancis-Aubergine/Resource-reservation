@@ -45,6 +45,13 @@ export class ApiService {
     return {data,error};
   }
 
+  async addUsers (user:any){
+    const { data , error } = await this.supabase
+    .from('users')
+    .insert(user)
+    return {data,error};
+  }
+
 
 
   async getResources() {
@@ -116,6 +123,21 @@ async  handleSignInWithGoogle(response :any) {
   }
 
   async blockResourseUsers(blockResource: BlockResource) {
+async loginOauth(){
+  const { data, error } = await this.supabase.auth.signInWithOAuth({
+  provider: 'google'
+})
+}
+
+async  handleSignInWithGoogle(response :any) {
+  const { data, error } = await this.supabase.auth.signInWithIdToken({
+    provider: 'google',
+    token: response.credential,
+    nonce: 'NONCE', // must be the same one as provided in data-nonce (if any)
+  })
+}
+
+  async blockResourseUsers(blockResource :BlockResource){
 
     const { data, error } = await this.supabase
       .from('resource')
@@ -137,16 +159,6 @@ async  handleSignInWithGoogle(response :any) {
   }
     return{data,error}
 }
-async getUserProfile(){
-const { data } = await this.supabase.auth.getUser()
-  const user = data.user
-
-  return new Response(JSON.stringify({ user }), {
-    headers: { 'Content-Type': 'application/json' },
-    status: 200,
-    
-  })
-}
 
   async deleteResource(deleteResource: Resource) {
     await this.supabase
@@ -155,6 +167,8 @@ const { data } = await this.supabase.auth.getUser()
       .eq('resourceId', deleteResource.resourceId)
   }
 
+   signinGoogle(){
+    return this.supabase.auth.signInWithOAuth({
    signinGoogle(){
     return this.supabase.auth.signInWithOAuth({
     provider: 'google',
@@ -166,7 +180,19 @@ const { data } = await this.supabase.auth.getUser()
 
     }
 
+    options:{
+      queryParams: {
+        access_type: 'offline',
+        prompt: 'consent',
+      },
+
+    }
+
   })
+}
+
+getSession(){
+  return this.supabase.auth.getSession();
 }
 
 getSession(){
@@ -189,7 +215,12 @@ getSession(){
         // set this to false if you do not want the user to be automatically signed up
         shouldCreateUser: false,
         emailRedirectTo: 'https://localhost:4200/',
+        emailRedirectTo: 'https://localhost:4200/',
       },
+    })
+    this.supabase.auth.getSession().then((res)=>
+    {
+        console.log("important" + res)
     })
     this.supabase.auth.getSession().then((res)=>
     {

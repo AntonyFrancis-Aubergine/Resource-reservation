@@ -38,6 +38,13 @@ export class ApiService {
     return {data,error};
   }
 
+  async addUsers (user:any){
+    const { data , error } = await this.supabase
+    .from('users')
+    .insert(user)
+    return {data,error};
+  }
+
 
 
   async getResources() {
@@ -91,6 +98,15 @@ export class ApiService {
     })
   }
 
+async  handleSignInWithGoogle(response :any) {
+  const { data, error } = await this.supabase.auth.signInWithIdToken({
+    provider: 'google',
+    token: response.credential,
+    nonce: 'NONCE', // must be the same one as provided in data-nonce (if any)
+  })
+}
+
+
   async handleSignInWithGoogle(response: any) {
     const { data, error } = await this.supabase.auth.signInWithIdToken({
       provider: 'google',
@@ -119,6 +135,18 @@ export class ApiService {
 
     })
   }
+    return{data,error}
+}
+async getUserProfile(){
+const { data } = await this.supabase.auth.getUser()
+  const user = data.user
+
+  return new Response(JSON.stringify({ user }), {
+    headers: { 'Content-Type': 'application/json' },
+    status: 200,
+    
+  })
+}
 
   async deleteResource(deleteResource: Resource) {
     await this.supabase
@@ -127,9 +155,22 @@ export class ApiService {
       .eq('resourceId', deleteResource.resourceId)
   }
 
-  async signinGoogle(){this.supabase.auth.signInWithOAuth({
+   signinGoogle(){
+    return this.supabase.auth.signInWithOAuth({
     provider: 'google',
+    options:{
+      queryParams: {
+        access_type: 'offline',
+        prompt: 'consent',
+      },
+
+    }
+
   })
+}
+
+getSession(){
+  return this.supabase.auth.getSession();
 }
 
   get session() {
@@ -149,6 +190,10 @@ export class ApiService {
         shouldCreateUser: false,
         emailRedirectTo: 'https://localhost:4200/',
       },
+    })
+    this.supabase.auth.getSession().then((res)=>
+    {
+        console.log("important" + res)
     })
     console.log(data);
   }

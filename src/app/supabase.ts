@@ -1,5 +1,4 @@
 
-import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { createClient } from '@supabase/supabase-js'
 import { SharedService } from './shared.service';
 

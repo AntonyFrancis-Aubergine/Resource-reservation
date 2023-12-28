@@ -58,7 +58,7 @@ export class LoginComponent {
 
 
 
-      if (this.session?.user.email === 'antony@auberginesolutions.com') {
+      if (this.session?.user.email === 'admin@auberginesolutions.com') {
         console.log(this.session);
         this.router.navigate(['admin'])
       }

@@ -7,33 +7,15 @@
     </mat-card-header>
     <mat-card-content>
 
-      <div class="login-form">
-        <form class="login" #loginForm = "ngForm" >
-          <div class="emailId">
-            <mat-form-field class="email">
-              <mat-label>Email</mat-label>
-              <input matInput class="email" name="email" ngModel #email type="email"/>
-            </mat-form-field>
-          </div>
-          <div class="password">
-            <mat-form-field class="password">
-              <mat-label>Password</mat-label>
-              <input matInput type="password" ngModel name="password" #password/>
-            </mat-form-field>
-          </div>
-          <div class="input-element">
-
-            <button mat-raised-button color="primary" >Submit</button>
-        </div>
-        </form>
-      </div>
+      
+      
       <div class="googleSignin">
-        <div
+        <!-- <div
   id="g_id_onload"
   data-client_id="157645232914-rfjugqpitk0caia0i3sl2096uor3mi56.apps.googleusercontent.com"
   data-context="signin"
   data-ux_mode="popup"
-  data-callback="login"
+  data-callback="handleSignInWithGoogle"
   data-nonce=""
   data-auto_select="true"
   data-itp_support="true"
@@ -47,7 +29,7 @@
   data-text="signin_with"
   data-size="large"
   data-logo_alignment="left"
-></div>
+></div> -->
 
 <!-- 
         <div 
@@ -89,13 +71,13 @@
       <p>{{ user.email }}</p>
     </div>
   </div> -->
-    </mat-card-content>
-  </mat-card>
-  
-  <div class="input-element">
+  <div class="input-element"  style="justify-content: center; display: flex;">
 
     <button mat-raised-button color="primary" (click)="login()">Test</button>
 </div>
+    </mat-card-content>
+  </mat-card>
+  
   
   
 </div>

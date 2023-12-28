@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../../api.service';
 
 
 @Component({
@@ -8,11 +9,16 @@ import { Router } from '@angular/router';
   styleUrl: './admin-navbar.component.css'
 })
 export class AdminNavbarComponent {
+  constructor(private router: Router, private api:ApiService){}
 logout() {
-throw new Error('Method not implemented.');
+  if(confirm("do you want to logout?") == true){
+    this.api.signOut();
+    this.router.navigate([''])
+
+
+  }
 }
 
-  constructor(private router:Router,){}
 
 @Output() toggleSidebarNow: EventEmitter<any>= new EventEmitter();
 

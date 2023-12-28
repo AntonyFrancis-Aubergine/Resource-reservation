@@ -5,6 +5,8 @@ import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import supabase from '../supabase';
 import { AuthSession } from '@supabase/supabase-js';
+import supabase from '../supabase';
+import { AuthSession } from '@supabase/supabase-js';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,6 +19,7 @@ export class LoginComponent {
   };
   loggedIn: any;
   email: string | undefined;
+  status:any;
 
   session = this.api.session;
 
@@ -53,10 +56,25 @@ export class LoginComponent {
     //     alert("invalid credentials")
     //   }
     // })
+    });
+    // this.api.getSession().then((res) =>
+    // {
+    //   this.user.email= res.data.session?.user.email;
+    //   this.user.googleUserId = res.data.session?.user.id;
+    //   console.log(res.data.session?.user.email);
+    //   console.log(this.user.googleUserId)
+
+    //   else
+    //   {
+    //     alert("invalid credentials")
+    //   }
+    // })
 
   }
 
 
+
+  login(data?: any) {
   login(data?: any) {
     // console.log(data.email , data.password)
     this.api.signinGoogle()
@@ -78,8 +96,17 @@ export class LoginComponent {
 
     // })
 
+    //   this.api.getSession().then((res) =>
+    //   {
+    //     this.user.email= res.data.session?.user.email;
+    //     this.user.googleUserId = res.data.session?.user.id;
+    //     console.log(res.data.session?.user.email);
+
+    // })
+
   }
 
+  async addUser(user: any) {
   async addUser(user: any) {
 
     console.log(user)
@@ -96,6 +123,9 @@ export class LoginComponent {
       alert("An error occurred while adding the resource");
     }
   }
+
+
+
 
 
 

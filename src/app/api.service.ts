@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Supabase } from './supabase';
 import { AuthChangeEvent, AuthSession, Session, SupabaseClient, createClient } from '@supabase/supabase-js';
+import { AuthChangeEvent, AuthSession, Session, SupabaseClient, createClient } from '@supabase/supabase-js';
 import { initSupabase } from './utils/initSupabase';
 import { BlockResource, Reserve, Resource, Users } from './resource.model';
 
@@ -10,6 +11,7 @@ import { BlockResource, Reserve, Resource, Users } from './resource.model';
 export class ApiService {
   _session: AuthSession | null;
   constructor() { }
+  _session: AuthSession | null;
 
   supabase: SupabaseClient = createClient(initSupabase.supabaseUrl, initSupabase.supabaseKey);
 
@@ -84,6 +86,14 @@ export class ApiService {
       .select('*')
   }
 
+ 
+  async getEmail(email:string){
+    return await this.supabase
+    .from('users')
+    .select('googleUserId')
+    .eq('email' , email)
+  }
+
   async getResourcesDependent(typeId: string) {
     return await this.supabase
       .from('resource')
@@ -129,6 +139,12 @@ async loginOauth(){
 })
 }
 
+async signOut(){
+   await this.supabase.auth.signOut()
+
+
+}
+
 async  handleSignInWithGoogle(response :any) {
   const { data, error } = await this.supabase.auth.signInWithIdToken({
     provider: 'google',
@@ -169,8 +185,6 @@ async  handleSignInWithGoogle(response :any) {
 
    signinGoogle(){
     return this.supabase.auth.signInWithOAuth({
-   signinGoogle(){
-    return this.supabase.auth.signInWithOAuth({
     provider: 'google',
     options:{
       queryParams: {
@@ -190,6 +204,20 @@ async  handleSignInWithGoogle(response :any) {
 
   })
 }
+
+
+
+get session() {
+  this.supabase.auth.getSession().then((data: any) => {
+    this._session = data.session;
+  });
+  return this._session;
+}
+authChanges(callback: (event: AuthChangeEvent, session: Session | null) => void) {
+  return this.supabase.auth.onAuthStateChange(callback);
+}
+
+
 
 getSession(){
   return this.supabase.auth.getSession();
@@ -230,7 +258,56 @@ getSession(){
   }
 
 
+
+
+
+
+  async getResourcesAvailable(typeId: string, fromDate: Date, toDate: Date) {
+    try {
+      // Get booked resourceIds between fromDate and toDate from the reservation table
+      const bookedResourcesFromResult = await this.supabase
+      .from('reservation')
+      .select('resourceId')
+      .gte('dateFrom', fromDate);
+    
+    const bookedResourcesToResult = await this.supabase
+      .from('reservation')
+      .select('resourceId')
+      .lte('dateTo', toDate);
+    
+    
+const bookedResourcesFrom = bookedResourcesFromResult?.data?.map((res) => res.resourceId) || [];
+const bookedResourcesTo = bookedResourcesToResult?.data?.map((res) => res.resourceId) || [];
+      // Extract booked resourceIds
+      const bookedResourceIds = [...bookedResourcesFrom, ...bookedResourcesTo];
+
+      console.log(bookedResourceIds)
+
+      // Get all resources of the specified type
+      const allResourcesOfType = await this.supabase
+        .from('resource')
+        .select('resourceId')
+        .eq('resourceTypeId', typeId);
+
+      // Extract all resourceIds of the specified type
+      const allResourceIdsOfType = allResourcesOfType.data?.map((resource) => resource.resourceId);
+console.log(allResourceIdsOfType)
+      // Filter available resourceIds
+      const availableResourceIds = allResourceIdsOfType?.filter((resourceId) => bookedResourceIds?.includes(resourceId));
+      console.log(availableResourceIds)
+
+      return availableResourceIds;
+    } catch (error) {
+      console.error('Error fetching resources:', error);
+      throw error;
+    }
+  }
 }
 
 
+
+
+function or(arg0: string, arg1: string, arg2: string, toDate: Date) {
+  throw new Error('Function not implemented.');
+}
 

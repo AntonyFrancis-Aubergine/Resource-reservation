@@ -27,11 +27,15 @@ export class ApiService {
     return { data, error };
   }
 
-  async addUsers(user: any) {
-    const { data, error } = await this.supabase
-      .from('users')
-      .insert(user)
-    return { data, error };
+ 
+
+
+
+  async addUsers (user:any){
+    const { data , error } = await this.supabase
+    .from('users')
+    .insert(user)
+    return {data,error};
   }
 
 
@@ -123,19 +127,10 @@ export class ApiService {
       .eq('resourceId', deleteResource.resourceId)
   }
 
-  signinGoogle() {
-    return this.supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        queryParams: {
-          access_type: 'offline',
-          prompt: 'consent',
-        },
-
-      }
-
-    })
-  }
+  async signinGoogle(){this.supabase.auth.signInWithOAuth({
+    provider: 'google',
+  })
+}
 
   get session() {
     this.supabase.auth.getSession().then((data: any) => {
@@ -154,9 +149,6 @@ export class ApiService {
         shouldCreateUser: false,
         emailRedirectTo: 'https://localhost:4200/',
       },
-    })
-    this.supabase.auth.getSession().then((res) => {
-      console.log("important" + res)
     })
     console.log(data);
   }
